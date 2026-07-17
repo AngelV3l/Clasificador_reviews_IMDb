@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentiment-classifier"
+version = "0.1.0"
+description = "IMDb movie-review sentiment classifier: TF-IDF + linear model, served via FastAPI and Gradio"
+requires-python = ">=3.10"
+dependencies = [
+    "scikit-learn>=1.5",
+    "pandas>=2.2",
+    "joblib>=1.4",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.8",
+    "gradio>=4.44",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "httpx>=0.27", "ruff>=0.6"]
+notebooks = ["jupyterlab", "matplotlib", "seaborn", "wordcloud"]
+
+[project.scripts]
+train-sentiment = "sentiment_classifier.train:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

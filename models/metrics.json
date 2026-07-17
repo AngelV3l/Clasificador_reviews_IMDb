@@ -1,0 +1,23 @@
+{
+  "served_model": "logistic_regression",
+  "models": {
+    "logistic_regression": {
+      "cv_accuracy_mean": 0.8936,
+      "cv_accuracy_std": 0.0024,
+      "test_accuracy": 0.8958,
+      "test_f1_macro": 0.8958
+    },
+    "naive_bayes": {
+      "cv_accuracy_mean": 0.8663,
+      "cv_accuracy_std": 0.0016,
+      "test_accuracy": 0.8704,
+      "test_f1_macro": 0.8704
+    },
+    "linear_svc": {
+      "cv_accuracy_mean": 0.8888,
+      "cv_accuracy_std": 0.0012,
+      "test_accuracy": 0.8926,
+      "test_f1_macro": 0.8926
+    }
+  }
+}

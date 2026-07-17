@@ -1,0 +1,33 @@
+"""Gradio UI for the sentiment classifier (shared by local run and HF Spaces)."""
+
+import gradio as gr
+
+from sentiment_classifier.model import predict
+from sentiment_classifier.storage import log_prediction
+
+EXAMPLES = [
+    "One of the best films I have seen this year. The performances were stunning.",
+    "A complete waste of time. Predictable plot and wooden acting.",
+]
+
+
+def classify(review: str) -> str:
+    review = review.strip()
+    if not review:
+        return "Please enter a review."
+    label, confidence = predict(review)
+    log_prediction(review, label, confidence)
+    if confidence is None:
+        return f"Sentiment: {label}"
+    return f"Sentiment: {label} ({confidence:.0%} confidence)"
+
+
+demo = gr.Interface(
+    fn=classify,
+    inputs=gr.Textbox(lines=6, label="Movie review", placeholder="Write a review in English..."),
+    outputs=gr.Textbox(label="Prediction"),
+    title="IMDb Sentiment Classifier",
+    description="TF-IDF + logistic regression trained on ~50k IMDb reviews (~90% accuracy).",
+    examples=EXAMPLES,
+    flagging_mode="never",
+)
