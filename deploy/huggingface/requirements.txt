@@ -1,0 +1,6 @@
+# Dependencies for the Hugging Face Space. Gradio itself is installed by
+# Spaces from `sdk_version` in README.md, so it is not listed here.
+
+# Must match the version that pickled models/sentiment_pipeline.joblib.
+scikit-learn==1.7.0
+joblib>=1.4
