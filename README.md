@@ -6,9 +6,15 @@ ways: a FastAPI JSON endpoint and a Gradio web demo.
 
 [![Tests](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/tests.yml/badge.svg)](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/tests.yml)
 
-> **Deployment status:** deployment-ready but not yet hosted. The app runs locally
-> (`python app.py`) and ships with a `Dockerfile`; see [Deployment](#deployment)
-> for the free hosting options being evaluated.
+<!-- DEMO PLACEHOLDER: once the Hugging Face Space is live, replace this comment with:
+
+**Live demo:** [huggingface.co/spaces/HF_USER/imdb-sentiment](https://huggingface.co/spaces/HF_USER/imdb-sentiment)
+
+![Gradio demo](docs/demo.png)
+
+-->
+
+Run the demo locally with `python app.py`, or see [Deployment](#deployment).
 
 ## Results
 
@@ -28,7 +34,7 @@ a confidence score.
 
 - **Cleaning lives inside the pipeline.** `TfidfVectorizer(preprocessor=clean_text)`
   means the exact same normalisation runs at training and at inference. An earlier
-  version cleaned text only for training and fed raw text at serve time — a
+  version cleaned text only for training and fed raw text at serve time: a
   train/serve skew that silently degraded predictions.
 - **Duplicates dropped before splitting.** The raw dataset has 418 duplicate
   reviews; removing them before `train_test_split` avoids leakage between train
@@ -49,6 +55,7 @@ src/sentiment_classifier/
     gradio_app.py      # Gradio UI
     storage.py         # SQLite prediction log
 app.py                 # Gradio entry point (local + Hugging Face Spaces)
+deploy/huggingface/    # Space README (YAML header) + Space requirements
 notebooks/             # 01_eda, 02_modeling
 tests/                 # pytest (preprocessing + API)
 ```
@@ -82,13 +89,19 @@ this step.
 
 ## Deployment
 
-Not deployed yet. The pieces are in place — `app.py` as the entry point, a
-`Dockerfile`, and a committed model so no training step is needed at deploy time.
+- **Hugging Face Spaces (Gradio).** `app.py` is the Space entry point and the
+  trained pipeline is committed, so no training step runs at deploy time.
+  `deploy/huggingface/` holds the Space's `README.md` (with the YAML header
+  Spaces requires) and its `requirements.txt`, which pins scikit-learn to the
+  version that pickled the model. Keeping them there leaves this README free of
+  Spaces metadata.
+- **Docker.** The `Dockerfile` serves the FastAPI endpoint on port 8000:
 
-Free options under consideration:
+  ```bash
+  docker build -t imdb-sentiment .
+  docker run -p 8000:8000 imdb-sentiment
+  ```
 
-- **Streamlit Community Cloud** — free for public apps, deploys straight from the
-  GitHub repo (would require a small Streamlit UI alongside the Gradio one).
-- **Render (free tier)** — runs the current Gradio/FastAPI stack from the
-  `Dockerfile`; the instance sleeps after inactivity and cold-starts on the next
-  request.
+## License
+
+MIT, see [LICENSE](LICENSE).
