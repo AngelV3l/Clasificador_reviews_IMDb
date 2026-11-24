@@ -27,7 +27,7 @@ demo = gr.Interface(
     inputs=gr.Textbox(lines=6, label="Movie review", placeholder="Write a review in English..."),
     outputs=gr.Textbox(label="Prediction"),
     title="IMDb Sentiment Classifier",
-    description="TF-IDF + logistic regression trained on ~50k IMDb reviews (~90% accuracy).",
+    description="TF-IDF + logistic regression trained on the 50k-review IMDb dataset (89.6% test accuracy).",
     examples=EXAMPLES,
     flagging_mode="never",
 )
