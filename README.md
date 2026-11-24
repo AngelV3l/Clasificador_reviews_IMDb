@@ -4,7 +4,7 @@ Classifies English movie reviews as **positive** or **negative**. A TF-IDF +
 logistic-regression pipeline trained on the 50k-review IMDb dataset, served two
 ways: a FastAPI JSON endpoint and a Gradio web demo.
 
-![CI](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/ci.yml/badge.svg)
+[![Tests](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/tests.yml/badge.svg)](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/tests.yml)
 
 > **Deployment status:** deployment-ready but not yet hosted. The app runs locally
 > (`python app.py`) and ships with a `Dockerfile`; see [Deployment](#deployment)
