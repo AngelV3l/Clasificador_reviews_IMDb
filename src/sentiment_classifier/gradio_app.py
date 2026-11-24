@@ -11,6 +11,13 @@ EXAMPLES = [
 ]
 
 
+def format_confidence(confidence: float) -> str:
+    """Show one decimal, and never round a probability up to a flat 100%."""
+    if confidence >= 0.999:
+        return "> 99.9%"
+    return f"{confidence:.1%}"
+
+
 def classify(review: str) -> str:
     review = review.strip()
     if not review:
@@ -19,7 +26,7 @@ def classify(review: str) -> str:
     log_prediction(review, label, confidence)
     if confidence is None:
         return f"Sentiment: {label}"
-    return f"Sentiment: {label} ({confidence:.0%} confidence)"
+    return f"Sentiment: {label} ({format_confidence(confidence)} confidence)"
 
 
 demo = gr.Interface(
