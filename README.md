@@ -55,7 +55,7 @@ src/sentiment_classifier/
     gradio_app.py      # Gradio UI
     storage.py         # SQLite prediction log
 app.py                 # Gradio entry point (local + Hugging Face Spaces)
-deploy/huggingface/    # Space README (YAML header) + Space requirements
+deploy/huggingface/    # Space README (YAML header), requirements and ZeroGPU entry point
 notebooks/             # 01_eda, 02_modeling
 tests/                 # pytest (preprocessing + API)
 ```
@@ -89,12 +89,14 @@ this step.
 
 ## Deployment
 
-- **Hugging Face Spaces (Gradio).** `app.py` is the Space entry point and the
-  trained pipeline is committed, so no training step runs at deploy time.
-  `deploy/huggingface/` holds the Space's `README.md` (with the YAML header
-  Spaces requires) and its `requirements.txt`, which pins scikit-learn to the
-  version that pickled the model. Keeping them there leaves this README free of
-  Spaces metadata.
+- **Hugging Face Spaces (Gradio).** The trained pipeline is committed, so no
+  training step runs at deploy time. `deploy/huggingface/` holds the Space's
+  `README.md` (with the YAML header Spaces requires), its `requirements.txt`,
+  which pins scikit-learn to the version that pickled the model, and its
+  `app.py`. Free Spaces run on ZeroGPU, which only starts if a function is
+  decorated with `@spaces.GPU`; the Space `app.py` adds one that is never
+  called, so inference stays on CPU. Keeping these files there leaves this
+  README and the root `app.py` free of Spaces specifics.
 - **Docker.** The `Dockerfile` serves the FastAPI endpoint on port 8000:
 
   ```bash

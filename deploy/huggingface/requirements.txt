@@ -4,3 +4,6 @@
 # Must match the version that pickled models/sentiment_pipeline.joblib.
 scikit-learn==1.7.0
 joblib>=1.4
+
+# ZeroGPU startup check (see app.py in this folder).
+spaces
