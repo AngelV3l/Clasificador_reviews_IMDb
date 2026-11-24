@@ -6,15 +6,11 @@ ways: a FastAPI JSON endpoint and a Gradio web demo.
 
 [![Tests](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/tests.yml/badge.svg)](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/tests.yml)
 
-<!-- DEMO PLACEHOLDER: once the Hugging Face Space is live, replace this comment with:
+**Live demo:** [huggingface.co/spaces/Angel481516/imdb-sentiment](https://huggingface.co/spaces/Angel481516/imdb-sentiment)
 
-**Live demo:** [huggingface.co/spaces/HF_USER/imdb-sentiment](https://huggingface.co/spaces/HF_USER/imdb-sentiment)
+![Gradio demo: a review classified as positive with 97% confidence](docs/demo.png)
 
-![Gradio demo](docs/demo.png)
-
--->
-
-Run the demo locally with `python app.py`, or see [Deployment](#deployment).
+Run it locally with `python app.py`, or see [Deployment](#deployment).
 
 ## Results
 
