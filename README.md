@@ -6,7 +6,7 @@ ways: a FastAPI JSON endpoint and a Gradio web demo.
 
 [![Tests](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/tests.yml/badge.svg)](https://github.com/AngelV3l/Clasificador_reviews_IMDb/actions/workflows/tests.yml)
 
-**Live demo:** [huggingface.co/spaces/Angel481516/imdb-sentiment](https://huggingface.co/spaces/Angel481516/imdb-sentiment)
+**Live demo:** [huggingface.co/spaces/AngelV3l/imdb-sentiment](https://huggingface.co/spaces/AngelV3l/imdb-sentiment)
 
 ![Gradio demo: a review classified as positive with 97% confidence](docs/demo.png)
 
